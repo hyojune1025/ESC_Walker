@@ -38,7 +38,7 @@
         app:layout_constraintStart_toStartOf="@+id/search_ibtn_back"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <Spinner
         android:id="@+id/search_et_start"
         android:layout_width="0dp"
         android:layout_height="40dp"
@@ -46,13 +46,13 @@
         android:layout_marginTop="32dp"
         android:background="@drawable/border"
         android:ems="10"
-        android:hint="출발장소"
+        android:entries="@array/start"
         android:inputType="textMultiLine|textNoSuggestions"
         app:layout_constraintEnd_toStartOf="@+id/search_et_arrive"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <EditText
+    <Spinner
         android:id="@+id/search_et_arrive"
         android:layout_width="0dp"
         android:layout_height="40dp"
@@ -60,7 +60,7 @@
         android:layout_marginEnd="16dp"
         android:background="@drawable/border"
         android:ems="10"
-        android:hint="도착장소"
+        android:entries="@array/arrive"
         android:inputType="textMultiLine|textNoSuggestions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/search_et_start"
