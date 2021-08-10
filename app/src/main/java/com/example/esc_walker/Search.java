@@ -1,6 +1,9 @@
 package com.example.esc_walker;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -10,6 +13,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
+import com.google.android.material.tabs.TabLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -29,6 +34,8 @@ public class Search extends AppCompatActivity {
             updateLabel();
         }
     };
+
+    private FragmentPagerAdapter fragmentPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +61,14 @@ public class Search extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //viewPager setting
+        ViewPager viewPager = findViewById(R.id.search_vp);
+        fragmentPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+
+        TabLayout tabLayout = findViewById(R.id.search_tab_layout);
+        viewPager.setAdapter(fragmentPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
 
     }
 
