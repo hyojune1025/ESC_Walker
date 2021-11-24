@@ -11,7 +11,8 @@ import androidx.fragment.app.Fragment;
 
 public class FragAirplane extends Fragment{
     private View view;
-    
+    //TODO
+
     public static FragAirplane newInstance(){
         FragAirplane fragAirplane = new FragAirplane();
         return fragAirplane;
