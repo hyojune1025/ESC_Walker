@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00BCD4"
+    android:background="#EDE8BC"
     tools:context=".Search">
 
     <ImageButton
         android:id="@+id/search_ibtn_back"
         android:layout_width="58dp"
         android:layout_height="52dp"
-        android:background="#00BCD4"
+        android:background="#EDE8BC"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="?attr/actionModeCloseDrawable" />
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="검색"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/search_ibtn_back"
@@ -86,13 +86,14 @@
 
     <Button
         android:id="@+id/serach_btn_lookup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="118dp"
+        android:layout_height="65dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/blackborder"
-        android:backgroundTint="#00BCD4"
+        android:backgroundTint="#301E1E"
         android:text="조회"
+        android:textSize="30sp"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/search_tab_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
