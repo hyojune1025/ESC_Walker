@@ -39,7 +39,7 @@
 
 
         <ImageButton
-            android:id="@+id/ibt_airplane"
+            android:id="@+id/ibt_bus"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="50dp"
@@ -57,7 +57,7 @@
             android:backgroundTint="#FFFFFF"/>
 
         <ImageButton
-            android:id="@+id/ibt_bus"
+            android:id="@+id/ibt_airplane"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="50dp"
@@ -83,7 +83,6 @@
             android:layout_weight="1"
             android:background="@drawable/border"
             android:ems="10"
-            android:entries="@array/spinner_city"
             android:inputType="textMultiLine|textNoSuggestions" />
 
         <Spinner
@@ -95,7 +94,6 @@
             android:layout_weight="1"
             android:background="@drawable/border"
             android:ems="10"
-            android:entries="@array/start"
             android:inputType="textMultiLine|textNoSuggestions" />
     </LinearLayout>
 
@@ -108,14 +106,13 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <Spinner
-            android:id="@+id/spinner_city"
+            android:id="@+id/sp_arrive_city"
             android:layout_width="160dp"
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
             android:layout_weight="1"
             android:background="@drawable/border"
             android:ems="10"
-            android:entries="@array/spinner_city"
             android:inputType="textMultiLine|textNoSuggestions" />
 
         <Spinner
@@ -127,7 +124,6 @@
             android:layout_weight="1"
             android:background="@drawable/border"
             android:ems="10"
-            android:entries="@array/start"
             android:inputType="textMultiLine|textNoSuggestions" />
     </LinearLayout>
 
@@ -138,8 +134,8 @@
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
-        <ImageView
-            android:id="@+id/imageView2"
+        <ImageButton
+            android:id="@+id/ibt_calendar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
@@ -147,15 +143,15 @@
             android:layout_marginTop="8dp"
             android:layout_marginStart="16dp"/>
 
-        <EditText
-            android:id="@+id/search_et_date"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
+        <TextView
+            android:id="@+id/search_tv_date"
+            android:layout_width="15dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
             android:background="@drawable/border"
             android:ems="10"
-            android:hint="  날짜"
-            android:inputType="textPersonName"
-            android:layout_weight="2"/>
+            android:hint="           날짜"
+            android:inputType="textPersonName" />
 
         <Button
             android:id="@+id/serach_btn_lookup"
