@@ -1,3 +1,143 @@
 <resources>
-    <string name="app_name">ESC_Walker</string>
+    <string name="app_name">spinnerTest</string>
+    <string-array name="spinner_city_bus">
+        <item>서울</item>
+        <item>인천</item>
+        <item>대구</item>
+        <item>대전</item>
+        <item>부산</item>
+        <item>울산</item>
+        <item>광주</item>
+    </string-array>
+
+    <string-array name="spinner_tm_seoul_bus">
+        <item>서울경부</item>
+        <item>센트럴시티(서울)</item>
+        <item>동서울</item>
+    </string-array>
+    <string-array name="spinner_tm_incheon_bus">
+        <item>인천</item>
+        <item>인천공항T1</item>
+        <item>인천공항T2</item>
+    </string-array>
+    <string-array name="spinner_tm_daejeon_bus">
+        <item>대전청사</item>
+        <item>대전복합</item>
+        <item>대전도룡</item>
+    </string-array>
+    <string-array name="spinner_tm_daegu_bus">
+        <item>동대구</item>
+        <item>서대구</item>
+        <item>대구용계</item>
+    </string-array>
+    <string-array name="spinner_tm_ulsan_bus">
+        <item>울산</item>
+        <item>울산신복</item>
+    </string-array>
+    <string-array name="spinner_tm_busan_bus">
+        <item>부산</item>
+        <item>서부산(사상)</item>
+    </string-array>
+    <string-array name="spinner_tm_gwangju_bus">
+        <item>광주(유·스퀘어)</item>
+        <item>광주비아</item>
+    </string-array>
+
+    <string-array name="spinner_city_train">
+        <item>서울</item>
+        <item>인천</item>
+        <item>대구</item>
+        <item>대전</item>
+        <item>부산</item>
+        <item>울산</item>
+        <item>광주</item>
+    </string-array>
+    <string-array name="spinner_tm_seoul_train">
+        <item>서울</item>
+        <item>용산</item>
+        <item>노량진</item>
+        <item>영등포</item>
+        <item>신도림</item>
+        <item>상봉</item>
+        <item>서빙고</item>
+        <item>옥수</item>
+        <item>왕십리</item>
+        <item>청량리</item>
+    </string-array>
+    <string-array name="spinner_tm_incheon_train">
+        <item>주안</item>
+        <item>검암</item>
+        <item>인천공항T1</item>
+        <item>인천공항T2</item>
+    </string-array>
+    <string-array name="spinner_tm_daejeon_train">
+        <item>대전</item>
+        <item>서대전</item>
+        <item>흑석리</item>
+        <item>신탄진</item>
+    </string-array>
+    <string-array name="spinner_tm_daegu_train">
+        <item>대구</item>
+        <item>동대구</item>
+    </string-array>
+    <string-array name="spinner_tm_ulsan_train">
+        <item>북울산</item>
+        <item>울산(통도사)</item>
+        <item>남창</item>
+        <item>덕하</item>
+        <item>태화강</item>
+        <item>효문</item>
+    </string-array>
+    <string-array name="spinner_tm_busan_train">
+        <item>화명</item>
+        <item>구포</item>
+        <item>사상</item>
+        <item>부산</item>
+        <item>부전</item>
+        <item>동래</item>
+        <item>센텀</item>
+        <item>신해운대</item>
+        <item>송정</item>
+        <item>기장</item>
+    </string-array>
+    <string-array name="spinner_tm_gwangju_train">
+        <item>광주송정</item>
+        <item>효천</item>
+        <item>서광주</item>
+        <item>광주</item>
+        <item>극락강</item>
+    </string-array>
+
+    <string-array name="spinner_city_airplane">
+        <item>서울</item>
+        <item>인천</item>
+        <item>대구</item>
+        <item>제주</item>
+        <item>부산</item>
+        <item>울산</item>
+        <item>광주</item>
+    </string-array>
+
+    <string-array name="spinner_tm_seoul_airplane">
+        <item>김포(GMP)</item>
+    </string-array>
+
+    <string-array name="spinner_tm_incheon_airplane">
+        <item>인천(ICN)</item>
+    </string-array>
+    <string-array name="spinner_tm_jeju_airplane">
+        <item>제주(CJU)</item>
+    </string-array>
+    <string-array name="spinner_tm_daegu_airplane">
+        <item>대구(TAE)</item>
+    </string-array>
+    <string-array name="spinner_tm_ulsan_airplane">
+        <item>울산(USN)</item>
+    </string-array>
+    <string-array name="spinner_tm_busan_airplane">
+        <item>부산/김해(PUS)</item>
+    </string-array>
+    <string-array name="spinner_tm_gwangju_airplane">
+        <item>광주(KWJ)</item>
+    </string-array>
 </resources>
