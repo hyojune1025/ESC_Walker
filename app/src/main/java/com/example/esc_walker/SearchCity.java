@@ -3,7 +3,6 @@ package com.example.esc_walker;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -20,9 +19,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class Search extends AppCompatActivity {
+public class SearchCity extends AppCompatActivity {
 
     private Button search_btn_lookup;
+
     private ImageButton search_ibtn_back;
     Calendar calendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener datePicker = new DatePickerDialog.OnDateSetListener() {
@@ -49,7 +49,7 @@ public class Search extends AppCompatActivity {
         search_et_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(Search.this,datePicker,calendar.get(Calendar.YEAR),
+                new DatePickerDialog(SearchCity.this,datePicker,calendar.get(Calendar.YEAR),
                         calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
@@ -57,7 +57,7 @@ public class Search extends AppCompatActivity {
         search_ibtn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Search.this, MainActivity.class);
+                Intent intent = new Intent(SearchCity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
