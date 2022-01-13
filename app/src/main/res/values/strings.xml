@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">spinnerTest</string>
-    <string-array name="spinner_city_bus">
+    <string-array name="spinner_city_start">
+        <item>출발지</item>
         <item>서울</item>
         <item>인천</item>
         <item>대구</item>
@@ -8,6 +9,29 @@
         <item>부산</item>
         <item>울산</item>
         <item>광주</item>
+    </string-array>
+
+    <string-array name="spinner_city_arrive">
+        <item>도착지</item>
+        <item>서울</item>
+        <item>인천</item>
+        <item>대구</item>
+        <item>대전</item>
+        <item>부산</item>
+        <item>울산</item>
+        <item>광주</item>
+    </string-array>
+
+    <string-array name="spinner_null_bus">
+        <item>터미널</item>
+    </string-array>
+
+    <string-array name="spinner_null_train">
+        <item>기차역</item>
+    </string-array>
+
+    <string-array name="spinner_null_airplane">
+        <item>공항</item>
     </string-array>
 
     <string-array name="spinner_tm_seoul_bus">
@@ -43,15 +67,7 @@
         <item>광주비아</item>
     </string-array>
 
-    <string-array name="spinner_city_train">
-        <item>서울</item>
-        <item>인천</item>
-        <item>대구</item>
-        <item>대전</item>
-        <item>부산</item>
-        <item>울산</item>
-        <item>광주</item>
-    </string-array>
+
     <string-array name="spinner_tm_seoul_train">
         <item>서울</item>
         <item>용산</item>
@@ -108,7 +124,19 @@
         <item>극락강</item>
     </string-array>
 
-    <string-array name="spinner_city_airplane">
+    <string-array name="spinner_city_start_airplane">
+        <item>출발지</item>
+        <item>서울</item>
+        <item>인천</item>
+        <item>대구</item>
+        <item>제주</item>
+        <item>부산</item>
+        <item>울산</item>
+        <item>광주</item>
+    </string-array>
+
+    <string-array name="spinner_city_arrive_airplane">
+        <item>도착지</item>
         <item>서울</item>
         <item>인천</item>
         <item>대구</item>

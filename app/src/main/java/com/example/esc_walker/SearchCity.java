@@ -68,7 +68,7 @@ public class SearchCity extends AppCompatActivity {
         ibt_bus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                adsp_start_city = ArrayAdapter.createFromResource(SearchCity.this,R.array.spinner_city_bus, android.R.layout.simple_spinner_dropdown_item);
+                adsp_start_city = ArrayAdapter.createFromResource(SearchCity.this,R.array.spinner_city_start, android.R.layout.simple_spinner_dropdown_item);
                 adsp_start_city.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 sp_start_city.setAdapter(adsp_start_city);
                 sp_start_city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -88,6 +88,8 @@ public class SearchCity extends AppCompatActivity {
                             adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_ulsan_bus, android.R.layout.simple_spinner_dropdown_item);
                         }else if(adsp_start_city.getItem(position).equals("광주")) {
                             adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_gwangju_bus, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_start_city.getItem(position).equals("출발지")) {
+                            adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_null_bus, android.R.layout.simple_spinner_dropdown_item);
                         }
                         adsp_start_tm.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         sp_start_tm.setAdapter(adsp_start_tm);
@@ -106,7 +108,7 @@ public class SearchCity extends AppCompatActivity {
                     }
                 });
 
-                adsp_arrive_city = ArrayAdapter.createFromResource(SearchCity.this,R.array.spinner_city_bus, android.R.layout.simple_spinner_dropdown_item);
+                adsp_arrive_city = ArrayAdapter.createFromResource(SearchCity.this,R.array.spinner_city_arrive, android.R.layout.simple_spinner_dropdown_item);
                 adsp_arrive_city.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 sp_arrive_city.setAdapter(adsp_arrive_city);
                 sp_arrive_city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -126,6 +128,8 @@ public class SearchCity extends AppCompatActivity {
                             adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_ulsan_bus, android.R.layout.simple_spinner_dropdown_item);
                         }else if(adsp_arrive_city.getItem(position).equals("광주")) {
                             adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_gwangju_bus, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_arrive_city.getItem(position).equals("도착지")) {
+                            adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_null_bus, android.R.layout.simple_spinner_dropdown_item);
                         }
                         adsp_arrive_tm.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         sp_arrive_tm.setAdapter(adsp_arrive_tm);
@@ -149,7 +153,7 @@ public class SearchCity extends AppCompatActivity {
         ibt_train.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                adsp_start_city = ArrayAdapter.createFromResource(SearchCity.this,R.array.spinner_city_train, android.R.layout.simple_spinner_dropdown_item);
+                adsp_start_city = ArrayAdapter.createFromResource(SearchCity.this,R.array.spinner_city_start, android.R.layout.simple_spinner_dropdown_item);
                 adsp_start_city.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 sp_start_city.setAdapter(adsp_start_city);
                 sp_start_city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -169,6 +173,8 @@ public class SearchCity extends AppCompatActivity {
                             adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_ulsan_train, android.R.layout.simple_spinner_dropdown_item);
                         }else if(adsp_start_city.getItem(position).equals("광주")) {
                             adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_gwangju_train, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_start_city.getItem(position).equals("출발지")) {
+                            adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_null_train, android.R.layout.simple_spinner_dropdown_item);
                         }
                         adsp_start_tm.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         sp_start_tm.setAdapter(adsp_start_tm);
@@ -187,7 +193,7 @@ public class SearchCity extends AppCompatActivity {
                     }
                 });
 
-                adsp_arrive_city = ArrayAdapter.createFromResource(SearchCity.this,R.array.spinner_city_train, android.R.layout.simple_spinner_dropdown_item);
+                adsp_arrive_city = ArrayAdapter.createFromResource(SearchCity.this,R.array.spinner_city_arrive, android.R.layout.simple_spinner_dropdown_item);
                 adsp_arrive_city.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 sp_arrive_city.setAdapter(adsp_arrive_city);
                 sp_arrive_city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -207,6 +213,8 @@ public class SearchCity extends AppCompatActivity {
                             adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_ulsan_train, android.R.layout.simple_spinner_dropdown_item);
                         }else if(adsp_arrive_city.getItem(position).equals("광주")) {
                             adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_gwangju_train, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_arrive_city.getItem(position).equals("도착지")) {
+                            adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_null_train, android.R.layout.simple_spinner_dropdown_item);
                         }
                         adsp_arrive_tm.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         sp_arrive_tm.setAdapter(adsp_arrive_tm);
@@ -230,7 +238,7 @@ public class SearchCity extends AppCompatActivity {
         ibt_airplane.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                adsp_start_city = ArrayAdapter.createFromResource(SearchCity.this,R.array.spinner_city_airplane, android.R.layout.simple_spinner_dropdown_item);
+                adsp_start_city = ArrayAdapter.createFromResource(SearchCity.this,R.array.spinner_city_start_airplane, android.R.layout.simple_spinner_dropdown_item);
                 adsp_start_city.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 sp_start_city.setAdapter(adsp_start_city);
                 sp_start_city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -250,6 +258,8 @@ public class SearchCity extends AppCompatActivity {
                             adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_ulsan_airplane, android.R.layout.simple_spinner_dropdown_item);
                         }else if(adsp_start_city.getItem(position).equals("광주")) {
                             adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_gwangju_airplane, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_start_city.getItem(position).equals("출발지")) {
+                            adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_null_airplane, android.R.layout.simple_spinner_dropdown_item);
                         }
                         adsp_start_tm.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         sp_start_tm.setAdapter(adsp_start_tm);
@@ -268,7 +278,7 @@ public class SearchCity extends AppCompatActivity {
                     }
                 });
 
-                adsp_arrive_city = ArrayAdapter.createFromResource(SearchCity.this,R.array.spinner_city_airplane, android.R.layout.simple_spinner_dropdown_item);
+                adsp_arrive_city = ArrayAdapter.createFromResource(SearchCity.this,R.array.spinner_city_arrive_airplane, android.R.layout.simple_spinner_dropdown_item);
                 adsp_arrive_city.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 sp_arrive_city.setAdapter(adsp_arrive_city);
                 sp_arrive_city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -288,6 +298,8 @@ public class SearchCity extends AppCompatActivity {
                             adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_ulsan_airplane, android.R.layout.simple_spinner_dropdown_item);
                         }else if(adsp_arrive_city.getItem(position).equals("광주")) {
                             adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_gwangju_airplane, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_arrive_city.getItem(position).equals("도착지")) {
+                            adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_null_airplane, android.R.layout.simple_spinner_dropdown_item);
                         }
                         adsp_arrive_tm.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         sp_arrive_tm.setAdapter(adsp_arrive_tm);
