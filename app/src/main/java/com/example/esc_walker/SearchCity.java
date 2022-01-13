@@ -32,12 +32,16 @@ public class SearchCity extends AppCompatActivity {
     private ImageButton ibt_bus;
     private ImageButton ibt_train;
     private ImageButton ibt_airplane;
-    ArrayAdapter<CharSequence> adsp_start_city, adsp_arrive_city,
-            adsp_start_tm, adsp_arrive_tm;
+    ArrayAdapter<CharSequence> adsp_start_city, adsp_arrive_city, adsp_start_tm, adsp_arrive_tm; //spinner 정보 출력할 adapter
+
+    //api 불러올 때 사용해야 하는 정보
     String start_tm;
     String arrive_tm;
-
+    String start_date;
+    
     private ImageButton search_ibtn_back;
+
+    //달력(날짜) 선택
     Calendar calendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener datePicker = new DatePickerDialog.OnDateSetListener() {
         @Override
@@ -48,8 +52,15 @@ public class SearchCity extends AppCompatActivity {
             updateLabel();
         }
     };
+    private void updateLabel(){
+        String date = "";
+        String date_format = "yyyy/MM/dd";
+        SimpleDateFormat sdf = new SimpleDateFormat(date_format, Locale.KOREA);
 
-//    private FragmentPagerAdapter fragmentPagerAdapter;
+        TextView search_tv_date = findViewById(R.id.search_tv_date);
+        search_tv_date.setText(date = sdf.format(calendar.getTime()));
+        start_date = date.substring(0,4) + date.substring(5,7) + date.substring(8,10);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +76,7 @@ public class SearchCity extends AppCompatActivity {
         ibt_train = findViewById(R.id.ibt_train);
         ibt_airplane = findViewById(R.id.ibt_airplane);
 
+        //버스 입력모드
         ibt_bus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,6 +162,7 @@ public class SearchCity extends AppCompatActivity {
             }
         });
 
+        //기차 입력모드
         ibt_train.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -235,6 +248,7 @@ public class SearchCity extends AppCompatActivity {
             }
         });
 
+        //비행기 입력모드
         ibt_airplane.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -324,6 +338,7 @@ public class SearchCity extends AppCompatActivity {
         search_btn_lookup = findViewById(R.id.serach_btn_lookup);
         ibt_date = findViewById(R.id.ibt_calendar);
 
+        //날짜 입력
         ibt_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -332,6 +347,7 @@ public class SearchCity extends AppCompatActivity {
             }
         });
 
+        //뒤로가기(시작화면으로)
         search_ibtn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -339,22 +355,7 @@ public class SearchCity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-//        //viewPager setting
-//        ViewPager viewPager = findViewById(R.id.search_vp);
-//        fragmentPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-//
-//        TabLayout tabLayout = findViewById(R.id.search_tab_layout);
-//        viewPager.setAdapter(fragmentPagerAdapter);
-//        tabLayout.setupWithViewPager(viewPager);
-
     }
 
-    private void updateLabel(){
-        String date_format = "MM/dd";
-        SimpleDateFormat sdf = new SimpleDateFormat(date_format, Locale.KOREA);
 
-        TextView search_tv_date = findViewById(R.id.search_tv_date);
-        search_tv_date.setText(sdf.format(calendar.getTime()));
-    }
 }
