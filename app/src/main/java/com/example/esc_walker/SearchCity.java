@@ -34,9 +34,13 @@ public class SearchCity extends AppCompatActivity {
     private ImageButton ibt_airplane;
     ArrayAdapter<CharSequence> adsp_start_city, adsp_arrive_city, adsp_start_tm, adsp_arrive_tm; //spinner 정보 출력할 adapter
 
+    TextView tv_result; //test for api TODO
+
     //api 불러올 때 사용해야 하는 정보
     String start_tm;
     String arrive_tm;
+    String start_id;
+    String arrive_id;
     String start_date;
     
     private ImageButton search_ibtn_back;
@@ -67,6 +71,8 @@ public class SearchCity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        tv_result = (TextView)findViewById(R.id.tv_result); // test for api TODO
+
         final Spinner sp_start_city = (Spinner)findViewById(R.id.sp_start_city);
         final Spinner sp_arrive_city = (Spinner)findViewById(R.id.sp_arrive_city);
         final Spinner sp_start_tm = (Spinner)findViewById(R.id.sp_start_terminal);
@@ -75,6 +81,8 @@ public class SearchCity extends AppCompatActivity {
         ibt_bus = findViewById(R.id.ibt_bus);
         ibt_train = findViewById(R.id.ibt_train);
         ibt_airplane = findViewById(R.id.ibt_airplane);
+
+        search_btn_lookup = (Button)findViewById(R.id.serach_btn_lookup);
 
         //버스 입력모드
         ibt_bus.setOnClickListener(new View.OnClickListener() {
@@ -157,6 +165,27 @@ public class SearchCity extends AppCompatActivity {
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                });
+                search_btn_lookup.setOnClickListener(new View.OnClickListener() {
+                    //TODO recycler view 와 연동
+                    @Override
+                    public void onClick(View v) {
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                start_id = GetBusInfo.getBusId(start_tm);
+                                arrive_id = GetBusInfo.getBusId(arrive_tm);
+                                String data = GetBusInfo.getBusData(start_id,arrive_id,start_date);
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        tv_result.setText(data);
+                                    }
+                                });
+                            }
+                        }).start();
+
                     }
                 });
             }
