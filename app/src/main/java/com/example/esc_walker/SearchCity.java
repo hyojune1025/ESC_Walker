@@ -2,6 +2,8 @@ package com.example.esc_walker;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
@@ -22,6 +24,7 @@ import android.widget.Toast;
 import com.google.android.material.tabs.TabLayout;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -34,7 +37,9 @@ public class SearchCity extends AppCompatActivity {
     private ImageButton ibt_airplane;
     ArrayAdapter<CharSequence> adsp_start_city, adsp_arrive_city, adsp_start_tm, adsp_arrive_tm; //spinner 정보 출력할 adapter
 
-    TextView tv_result; //test for api TODO
+    //test for api TODO
+    ArrayList<Bus> list = null;
+    RecyclerView recyclerView;
 
     //api 불러올 때 사용해야 하는 정보
     String start_tm;
@@ -71,7 +76,12 @@ public class SearchCity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        tv_result = (TextView)findViewById(R.id.tv_result); // test for api TODO
+        //RecyclerView TODO
+        recyclerView = (RecyclerView)findViewById(R.id.rcv_result);
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
 
         final Spinner sp_start_city = (Spinner)findViewById(R.id.sp_start_city);
         final Spinner sp_arrive_city = (Spinner)findViewById(R.id.sp_arrive_city);
@@ -176,11 +186,12 @@ public class SearchCity extends AppCompatActivity {
                             public void run() {
                                 start_id = GetBusInfo.getBusId(start_tm);
                                 arrive_id = GetBusInfo.getBusId(arrive_tm);
-                                String data = GetBusInfo.getBusData(start_id,arrive_id,start_date);
+                                list = GetBusInfo.getBusData(start_id,arrive_id,start_date);
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        tv_result.setText(data);
+                                        MyAdapter adapter = new MyAdapter(getApplicationContext(),list);
+                                        recyclerView.setAdapter(adapter);
                                     }
                                 });
                             }
