@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">spinnerTest</string>
+    <string name="app_name">Walker</string>
     <string-array name="spinner_city_start">
         <item>출발지</item>
         <item>서울</item>

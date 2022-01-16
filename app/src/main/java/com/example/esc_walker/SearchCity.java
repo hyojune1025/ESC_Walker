@@ -39,7 +39,7 @@ public class SearchCity extends AppCompatActivity {
 
     //test for api TODO
     ArrayList<Bus> list = null;
-    RecyclerView recyclerView;
+    //RecyclerView recyclerView;
 
     //api 불러올 때 사용해야 하는 정보
     String start_tm;
@@ -77,11 +77,11 @@ public class SearchCity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         //RecyclerView TODO
-        recyclerView = (RecyclerView)findViewById(R.id.rcv_result);
-        recyclerView.setHasFixedSize(true);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView = (RecyclerView)findViewById(R.id.rcv_result);
+//        recyclerView.setHasFixedSize(true);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+//        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+//        recyclerView.setLayoutManager(layoutManager);
 
         final Spinner sp_start_city = (Spinner)findViewById(R.id.sp_start_city);
         final Spinner sp_arrive_city = (Spinner)findViewById(R.id.sp_arrive_city);
@@ -191,6 +191,11 @@ public class SearchCity extends AppCompatActivity {
                                     @Override
                                     public void run() {
                                         MyAdapter adapter = new MyAdapter(getApplicationContext(),list);
+                                        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.rcv_result);
+                                        recyclerView.setHasFixedSize(true);
+                                        LinearLayoutManager layoutManager = new LinearLayoutManager(SearchCity.this);
+                                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                                        recyclerView.setLayoutManager(layoutManager);
                                         recyclerView.setAdapter(adapter);
                                     }
                                 });
