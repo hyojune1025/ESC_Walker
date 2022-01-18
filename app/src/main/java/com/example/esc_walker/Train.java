@@ -1,17 +1,25 @@
 package com.example.esc_walker;
 
-public class Bus {
-    String grade;
+public class Train {
+    String tName;
+    String depTime;
     String arrTime;
     String charge;
-    String depTime;
 
-    public String getGrade() {
-        return grade;
+    public String gettName() {
+        return tName;
     }
 
-    public void setGrade(String grade) {
-        this.grade = grade;
+    public void settName(String tName) {
+        this.tName = tName;
+    }
+
+    public String getDepTime() {
+        return depTime;
+    }
+
+    public void setDepTime(String depTime) {
+        this.depTime = depTime;
     }
 
     public String getArrTime() {
@@ -28,13 +36,5 @@ public class Bus {
 
     public void setCharge(String charge) {
         this.charge = charge;
-    }
-
-    public String getDepTime() {
-        return depTime;
-    }
-
-    public void setDepTime(String depTime) {
-        this.depTime = depTime;
     }
 }

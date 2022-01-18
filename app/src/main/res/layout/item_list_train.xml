@@ -19,13 +19,13 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_bus_grade"
-                android:layout_width="72sp"
+                android:id="@+id/tv_train_name"
+                android:layout_width="105sp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:fontFamily="@font/nanumbarungothic"
-                android:text="등급"
-                android:textSize="18sp" />
+                android:text="열차명"
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -34,8 +34,8 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_bus_charge"
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_train_charge"
+                android:layout_width="90sp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:fontFamily="@font/nanumbarungothic"
@@ -49,10 +49,10 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_bus_depTime"
+                android:id="@+id/tv_train_depTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="0dp"
                 android:fontFamily="@font/nanumbarungothic"
                 android:text="출발시간"
                 android:textSize="18sp" />
@@ -64,7 +64,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_bus_arrTime"
+                android:id="@+id/tv_train_arrTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"

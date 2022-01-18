@@ -66,7 +66,7 @@ public class GetBusInfo {
         ArrayList<Bus> list = null;
         Bus bus = null;
 
-        String numOfRows = "3";
+        String numOfRows = "20";
         String pageNo = "1";
         //TODO dep, arr -> terminal Id
         String depTerminalId = dep;
@@ -80,9 +80,10 @@ public class GetBusInfo {
 
         try{
             boolean charge = false;
-            boolean start = false;
-            boolean arrive = false;
+            boolean depTime = false;
+            boolean grade = false;
             boolean arrTime = false;
+            String time;
 
             URL url = new URL(queryUrl);
             InputStream is = url.openStream();
@@ -107,29 +108,37 @@ public class GetBusInfo {
                         else if (tag.equals("charge")) {
                             charge = true;
                         }
-                        else if (tag.equals("arrPlaceNm")) {
-                            arrive = true;
+                        else if (tag.equals("gradeNm")) {
+                            grade = true;
                         }
                         else if (tag.equals("arrPlandTime")) {
                             arrTime = true;
                         }
-                        else if (tag.equals("depPlaceNm")) {
-                            start = true;
+                        else if (tag.equals("depPlandTime")) {
+                            depTime = true;
                         }
                         break;
                     case XmlPullParser.TEXT:
                         if(charge){
                             bus.setCharge(xpp.getText());
                             charge = false;
-                        }else if(arrive){
-                            bus.setArrplaceNm(xpp.getText());
-                            arrive = false;
+                        }else if(grade){
+                            bus.setGrade(xpp.getText());
+                            grade = false;
                         }else if(arrTime){
-                            bus.setArrPlandTime(xpp.getText());
+                            time = xpp.getText().substring(8);
+                            String temp = time.substring(0,2);
+                            String temp2 = time.substring(2);
+                            time = temp+":"+temp2;
+                            bus.setArrTime(time);
                             arrTime = false;
-                        }else if(start){
-                            bus.setDepPlaceNm(xpp.getText());
-                            start = false;
+                        }else if(depTime){
+                            time = xpp.getText().substring(8);
+                            String temp = time.substring(0,2);
+                            String temp2 = time.substring(2);
+                            time = temp+":"+temp2;
+                            bus.setDepTime(time);
+                            depTime = false;
                         }
                         break;
                     case XmlPullParser.END_TAG:

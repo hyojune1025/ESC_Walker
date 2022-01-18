@@ -11,13 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
-    private ArrayList<Bus> mList;
+public class MyAdapter_train extends RecyclerView.Adapter<MyAdapter_train.MyViewHolder> {
+    private ArrayList<Train> mList;
     private LayoutInflater mInflate;
     private Context mContext;
 
-    public MyAdapter(Context context, ArrayList<Bus> buses){
-        this.mList = buses;
+    public MyAdapter_train(Context context, ArrayList<Train> trains){
+        this.mList = trains;
         this.mInflate = LayoutInflater.from(context);
         this.mContext = context;
     }
@@ -25,17 +25,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflate.inflate(R.layout.item_list_bus,parent,false);
+        View view = mInflate.inflate(R.layout.item_list_train,parent,false);
         MyViewHolder viewHolder = new MyViewHolder(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.bus_start.setText(mList.get(position).depPlaceNm);
-        holder.bus_arrive.setText(mList.get(position).arrplaceNm);
-        holder.bus_charge.setText(mList.get(position).charge);
-        holder.bus_arrTime.setText(mList.get(position).arrPlandTime);
+        holder.train_name.setText(mList.get(position).tName);
+        holder.train_charge.setText(mList.get(position).charge);
+        holder.train_depTime.setText(mList.get(position).depTime);
+        holder.train_arrTime.setText(mList.get(position).arrTime);
 
     }
 
@@ -45,18 +45,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        public TextView bus_start;
-        public TextView bus_arrive;
-        public TextView bus_charge;
-        public TextView bus_arrTime;
+        public TextView train_depTime;
+        public TextView train_name;
+        public TextView train_charge;
+        public TextView train_arrTime;
 
         public MyViewHolder(View view){
             super(view);
 
-            bus_start = view.findViewById(R.id.tv_bus_start);
-            bus_arrive = view.findViewById(R.id.tv_bus_arrive);
-            bus_charge = view.findViewById(R.id.tv_bus_charge);
-            bus_arrTime = view.findViewById(R.id.tv_bus_arrTime);
+            train_depTime = view.findViewById(R.id.tv_train_depTime);
+            train_name = view.findViewById(R.id.tv_train_name);
+            train_charge = view.findViewById(R.id.tv_train_charge);
+            train_arrTime = view.findViewById(R.id.tv_train_arrTime);
         }
     }
 }
