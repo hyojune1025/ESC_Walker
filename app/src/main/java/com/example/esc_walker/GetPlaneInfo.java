@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class GetPlaneInfo {
 
-    public static String GetPlaneId(String pt){
+    public static String getPlaneId(String pt){
         StringBuffer buffer = new StringBuffer();
 
         String numOfRows = "1";

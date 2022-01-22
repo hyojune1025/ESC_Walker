@@ -53,10 +53,10 @@ public class MyAdapter_train extends RecyclerView.Adapter<MyAdapter_train.MyView
         public MyViewHolder(View view){
             super(view);
 
-            train_depTime = view.findViewById(R.id.tv_plane_depTime);
-            train_name = view.findViewById(R.id.tv_plane_name);
-            train_charge = view.findViewById(R.id.tv_plane_charge);
-            train_arrTime = view.findViewById(R.id.tv_plane_arrTime);
+            train_depTime = view.findViewById(R.id.tv_train_depTime);
+            train_name = view.findViewById(R.id.tv_train_name);
+            train_charge = view.findViewById(R.id.tv_train_charge);
+            train_arrTime = view.findViewById(R.id.tv_train_arrTime);
         }
     }
 }
