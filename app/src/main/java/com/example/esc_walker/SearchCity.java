@@ -35,6 +35,7 @@ public class SearchCity extends AppCompatActivity {
     //test for api TODO
     ArrayList<Bus> list_bus = null;
     ArrayList<Train> list_train = null;
+    ArrayList<Plane> list_plane = null;
     //RecyclerView recyclerView;
 
     //api 불러올 때 사용해야 하는 정보
@@ -425,8 +426,27 @@ public class SearchCity extends AppCompatActivity {
         ibt_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(SearchCity.this,datePicker,calendar.get(Calendar.YEAR),
-                        calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        start_id = GetPlaneInfo.GetPlaneId(start_tm);
+                        arrive_id = GetPlaneInfo.GetPlaneId(arrive_tm);
+                        list_plane = GetPlaneInfo.getPlaneData(start_id,arrive_id,start_date);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                MyAdapter_train adapter = new MyAdapter_train(getApplicationContext(),list_train);
+                                RecyclerView recyclerView = (RecyclerView)findViewById(R.id.rcv_result);
+                                recyclerView.setHasFixedSize(true);
+                                LinearLayoutManager layoutManager = new LinearLayoutManager(SearchCity.this);
+                                layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                                recyclerView.setLayoutManager(layoutManager);
+                                recyclerView.setAdapter(adapter);
+                            }
+                        });
+                    }
+                }).start();
+
             }
         });
 

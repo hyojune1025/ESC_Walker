@@ -11,13 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MyAdapter_train extends RecyclerView.Adapter<MyAdapter_train.MyViewHolder> {
-    private ArrayList<Train> mList;
+public class MyAdapter_plane extends RecyclerView.Adapter<MyAdapter_plane.MyViewHolder> {
+    private ArrayList<Plane> mList;
     private LayoutInflater mInflate;
     private Context mContext;
 
-    public MyAdapter_train(Context context, ArrayList<Train> trains){
-        this.mList = trains;
+    public MyAdapter_plane(Context context, ArrayList<Plane> planes){
+        this.mList = planes;
         this.mInflate = LayoutInflater.from(context);
         this.mContext = context;
     }
@@ -25,17 +25,17 @@ public class MyAdapter_train extends RecyclerView.Adapter<MyAdapter_train.MyView
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflate.inflate(R.layout.item_list_train,parent,false);
+        View view = mInflate.inflate(R.layout.item_list_plane,parent,false);
         MyViewHolder viewHolder = new MyViewHolder(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.train_name.setText(mList.get(position).tName);
-        holder.train_charge.setText(mList.get(position).charge);
-        holder.train_depTime.setText(mList.get(position).depTime);
-        holder.train_arrTime.setText(mList.get(position).arrTime);
+        holder.plane_grade.setText(mList.get(position).airline);
+        holder.plane_charge.setText(mList.get(position).charge);
+        holder.plane_depTime.setText(mList.get(position).depTime);
+        holder.plane_arrTime.setText(mList.get(position).arrTime);
 
     }
 
@@ -45,18 +45,18 @@ public class MyAdapter_train extends RecyclerView.Adapter<MyAdapter_train.MyView
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        public TextView train_depTime;
-        public TextView train_name;
-        public TextView train_charge;
-        public TextView train_arrTime;
+        public TextView plane_depTime;
+        public TextView plane_grade;
+        public TextView plane_charge;
+        public TextView plane_arrTime;
 
         public MyViewHolder(View view){
             super(view);
 
-            train_depTime = view.findViewById(R.id.tv_plane_depTime);
-            train_name = view.findViewById(R.id.tv_plane_name);
-            train_charge = view.findViewById(R.id.tv_plane_charge);
-            train_arrTime = view.findViewById(R.id.tv_plane_arrTime);
+            plane_depTime = view.findViewById(R.id.tv_plane_depTime);
+            plane_grade = view.findViewById(R.id.tv_plane_airline);
+            plane_charge = view.findViewById(R.id.tv_plane_charge);
+            plane_arrTime = view.findViewById(R.id.tv_plane_arrTime);
         }
     }
 }
