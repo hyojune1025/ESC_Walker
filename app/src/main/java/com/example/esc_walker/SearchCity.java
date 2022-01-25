@@ -424,7 +424,8 @@ public class SearchCity extends AppCompatActivity {
                             public void run() {
                                 start_id = GetPlaneInfo.getPlaneId(start_tm);
                                 arrive_id = GetPlaneInfo.getPlaneId(arrive_tm);
-                                list_plain = GetPlaneInfo.getPlaneData(start_id,arrive_id,start_date);
+                                //list_plain = GetPlaneInfo.getPlaneData(start_id,arrive_id,start_date);
+                                list_plain = GetPlaneInfo.getPlaneData("NAARKJJ","NAARKPC","20201201");
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
