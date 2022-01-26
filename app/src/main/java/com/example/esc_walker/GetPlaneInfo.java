@@ -34,7 +34,7 @@ public class GetPlaneInfo {
             xpp.next();
             int eventType = xpp.getEventType();
 
-            while (eventType != XmlPullParser.END_DOCUMENT){
+            while (eventType != XmlPullParser.END_DOCUMENT && (!foundid)){
                 switch (eventType){
                     case XmlPullParser.START_DOCUMENT:
                         break;
@@ -44,7 +44,7 @@ public class GetPlaneInfo {
 
                         if (tag.equals("item")) ;
                         else if (tag.equals("airportId")) {
-                            if(!foundid)aid = true;
+                            aid = true;
                         }
                         else if (tag.equals("airportNm")) {
                             nm = true;
