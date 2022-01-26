@@ -16,7 +16,6 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -72,12 +71,6 @@ public class SearchCity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        //RecyclerView TODO
-//        recyclerView = (RecyclerView)findViewById(R.id.rcv_result);
-//        recyclerView.setHasFixedSize(true);
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-//        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-//        recyclerView.setLayoutManager(layoutManager);
 
         final Spinner sp_start_city = (Spinner)findViewById(R.id.sp_start_city);
         final Spinner sp_arrive_city = (Spinner)findViewById(R.id.sp_arrive_city);
@@ -94,6 +87,9 @@ public class SearchCity extends AppCompatActivity {
         ibt_bus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ibt_bus.setImageResource(R.drawable.bus);
+                ibt_train.setImageResource(R.drawable.train_icon);
+                ibt_airplane.setImageResource(R.drawable.airplane_icon);
                 adsp_start_city = ArrayAdapter.createFromResource(SearchCity.this,R.array.spinner_city_start, android.R.layout.simple_spinner_dropdown_item);
                 adsp_start_city.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 sp_start_city.setAdapter(adsp_start_city);
@@ -202,12 +198,14 @@ public class SearchCity extends AppCompatActivity {
                 });
             }
         });
-
         //기차 입력모드
         ibt_train.setOnClickListener(new View.OnClickListener() {
             int cityCode_dep,cityCode_arr;
             @Override
             public void onClick(View v) {
+                ibt_bus.setImageResource(R.drawable.bus_icon);
+                ibt_train.setImageResource(R.drawable.train);
+                ibt_airplane.setImageResource(R.drawable.airplane_icon);
                 adsp_start_city = ArrayAdapter.createFromResource(SearchCity.this,R.array.spinner_city_start, android.R.layout.simple_spinner_dropdown_item);
                 adsp_start_city.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 sp_start_city.setAdapter(adsp_start_city);
@@ -335,6 +333,9 @@ public class SearchCity extends AppCompatActivity {
         ibt_airplane.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ibt_bus.setImageResource(R.drawable.bus_icon);
+                ibt_train.setImageResource(R.drawable.train_icon);
+                ibt_airplane.setImageResource(R.drawable.airplane);
                 adsp_start_city = ArrayAdapter.createFromResource(SearchCity.this,R.array.spinner_city_start_airplane, android.R.layout.simple_spinner_dropdown_item);
                 adsp_start_city.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 sp_start_city.setAdapter(adsp_start_city);
