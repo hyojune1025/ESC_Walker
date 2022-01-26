@@ -133,6 +133,12 @@
         <item>부산</item>
         <item>울산</item>
         <item>광주</item>
+        <item>전남</item>
+        <item>전북</item>
+        <item>강원</item>
+        <item>경남</item>
+        <item>경북</item>
+        <item>충북</item>
     </string-array>
 
     <string-array name="spinner_city_arrive_airplane">
@@ -144,28 +150,53 @@
         <item>부산</item>
         <item>울산</item>
         <item>광주</item>
+        <item>전남</item>
+        <item>전북</item>
+        <item>강원</item>
+        <item>경남</item>
+        <item>경북</item>
+        <item>충북</item>
     </string-array>
 
     <string-array name="spinner_tm_seoul_airplane">
-        <item>김포(GMP)</item>
+        <item>김포</item>
     </string-array>
-
     <string-array name="spinner_tm_incheon_airplane">
-        <item>인천(ICN)</item>
+        <item>인천</item>
     </string-array>
     <string-array name="spinner_tm_jeju_airplane">
-        <item>제주(CJU)</item>
+        <item>제주</item>
     </string-array>
     <string-array name="spinner_tm_daegu_airplane">
-        <item>대구(TAE)</item>
+        <item>대구</item>
     </string-array>
     <string-array name="spinner_tm_ulsan_airplane">
-        <item>울산(USN)</item>
+        <item>울산</item>
     </string-array>
     <string-array name="spinner_tm_busan_airplane">
-        <item>부산/김해(PUS)</item>
+        <item>김해</item>
     </string-array>
     <string-array name="spinner_tm_gwangju_airplane">
-        <item>광주(KWJ)</item>
+        <item>광주</item>
+    </string-array>
+    <string-array name="spinner_tm_gn_airplane">
+        <item>무안</item>
+        <item>여수</item>
+    </string-array>
+    <string-array name="spinner_tm_gb_airplane">
+        <item>군산</item>
+    </string-array>
+    <string-array name="spinner_tm_kw_airplane">
+        <item>원주</item>
+        <item>양양</item>
+    </string-array>
+    <string-array name="spinner_tm_kn_airplane">
+        <item>사천</item>
+    </string-array>
+    <string-array name="spinner_tm_kb_airplane">
+        <item>포항</item>
+    </string-array>
+    <string-array name="spinner_tm_ch_airplane">
+        <item>청주</item>
     </string-array>
 </resources>

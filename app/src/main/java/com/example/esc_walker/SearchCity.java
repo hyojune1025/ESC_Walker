@@ -35,6 +35,7 @@ public class SearchCity extends AppCompatActivity {
     //test for api TODO
     ArrayList<Bus> list_bus = null;
     ArrayList<Train> list_train = null;
+    ArrayList<Plane> list_plain = null;
     //RecyclerView recyclerView;
 
     //api 불러올 때 사용해야 하는 정보
@@ -355,6 +356,18 @@ public class SearchCity extends AppCompatActivity {
                             adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_ulsan_airplane, android.R.layout.simple_spinner_dropdown_item);
                         }else if(adsp_start_city.getItem(position).equals("광주")) {
                             adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_gwangju_airplane, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_start_city.getItem(position).equals("전남")) {
+                            adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_gn_airplane, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_start_city.getItem(position).equals("전북")) {
+                            adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_gb_airplane, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_start_city.getItem(position).equals("강원")) {
+                            adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_kw_airplane, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_start_city.getItem(position).equals("경남")) {
+                            adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_kn_airplane, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_start_city.getItem(position).equals("경북")) {
+                            adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_kb_airplane, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_start_city.getItem(position).equals("충북")) {
+                            adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_ch_airplane, android.R.layout.simple_spinner_dropdown_item);
                         }else if(adsp_start_city.getItem(position).equals("출발지")) {
                             adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_null_airplane, android.R.layout.simple_spinner_dropdown_item);
                         }
@@ -395,6 +408,18 @@ public class SearchCity extends AppCompatActivity {
                             adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_ulsan_airplane, android.R.layout.simple_spinner_dropdown_item);
                         }else if(adsp_arrive_city.getItem(position).equals("광주")) {
                             adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_gwangju_airplane, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_arrive_city.getItem(position).equals("전남")) {
+                            adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_gn_airplane, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_arrive_city.getItem(position).equals("전북")) {
+                            adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_gb_airplane, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_arrive_city.getItem(position).equals("강원")) {
+                            adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_kw_airplane, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_arrive_city.getItem(position).equals("경남")) {
+                            adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_kn_airplane, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_arrive_city.getItem(position).equals("경북")) {
+                            adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_kb_airplane, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_arrive_city.getItem(position).equals("충북")) {
+                            adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_ch_airplane, android.R.layout.simple_spinner_dropdown_item);
                         }else if(adsp_arrive_city.getItem(position).equals("도착지")) {
                             adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_null_airplane, android.R.layout.simple_spinner_dropdown_item);
                         }
@@ -412,6 +437,34 @@ public class SearchCity extends AppCompatActivity {
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                });
+                search_btn_lookup.setOnClickListener(new View.OnClickListener() {
+                    //TODO recycler view 와 연동
+                    @Override
+                    public void onClick(View v) {
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                start_id = GetPlaneInfo.getPlaneId(start_tm);
+                                arrive_id = GetPlaneInfo.getPlaneId(arrive_tm);
+                                list_plain = GetPlaneInfo.getPlaneData(start_id,arrive_id,start_date);
+                                //list_plain = GetPlaneInfo.getPlaneData("NAARKJJ","NAARKPC","20201201");
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        MyAdapter_plane adapter = new MyAdapter_plane(getApplicationContext(),list_plain);
+                                        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.rcv_result);
+                                        recyclerView.setHasFixedSize(true);
+                                        LinearLayoutManager layoutManager = new LinearLayoutManager(SearchCity.this);
+                                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                                        recyclerView.setLayoutManager(layoutManager);
+                                        recyclerView.setAdapter(adapter);
+                                    }
+                                });
+                            }
+                        }).start();
+
                     }
                 });
             }
