@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -29,6 +30,9 @@ public class SearchCity extends AppCompatActivity {
     private ImageButton ibt_bus;
     private ImageButton ibt_train;
     private ImageButton ibt_airplane;
+    private ImageView iv_no_result_bus;
+    private ImageView iv_no_result_train;
+    private ImageView iv_no_result_airplane;
     ArrayAdapter<CharSequence> adsp_start_city, adsp_arrive_city, adsp_start_tm, adsp_arrive_tm; //spinner 정보 출력할 adapter
 
     //test for api TODO
@@ -81,6 +85,8 @@ public class SearchCity extends AppCompatActivity {
         ibt_bus = findViewById(R.id.ibt_bus);
         ibt_train = findViewById(R.id.ibt_train);
         ibt_airplane = findViewById(R.id.ibt_airplane);
+
+        iv_no_result_bus = findViewById(R.id.iv_no_result_bus);
 
         search_btn_lookup = (Button)findViewById(R.id.serach_btn_lookup);
 
@@ -177,24 +183,28 @@ public class SearchCity extends AppCompatActivity {
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
+                                list_bus = null;
                                 start_id = GetBusInfo.getBusId(start_tm);
                                 arrive_id = GetBusInfo.getBusId(arrive_tm);
-                                list_bus = GetBusInfo.getBusData(start_id,arrive_id,start_date);
+                                list_bus = GetBusInfo.getBusData(start_id, arrive_id, start_date);
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        MyAdapter_bus adapter = new MyAdapter_bus(getApplicationContext(),list_bus);
-                                        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.rcv_result);
-                                        recyclerView.setHasFixedSize(true);
-                                        LinearLayoutManager layoutManager = new LinearLayoutManager(SearchCity.this);
-                                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                                        recyclerView.setLayoutManager(layoutManager);
-                                        recyclerView.setAdapter(adapter);
+                                        if (!list_bus.isEmpty()) {
+                                            MyAdapter_bus adapter = new MyAdapter_bus(getApplicationContext(), list_bus);
+                                            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rcv_result);
+                                            recyclerView.setHasFixedSize(true);
+                                            LinearLayoutManager layoutManager = new LinearLayoutManager(SearchCity.this);
+                                            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                                            recyclerView.setLayoutManager(layoutManager);
+                                            recyclerView.setAdapter(adapter);
+                                        } else {
+                                            iv_no_result_bus.setImageResource(R.drawable.walk2);
+                                        }
                                     }
                                 });
                             }
                         }).start();
-
                     }
                 });
             }

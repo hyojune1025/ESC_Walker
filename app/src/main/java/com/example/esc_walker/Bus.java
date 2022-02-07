@@ -6,9 +6,7 @@ public class Bus {
     String charge;
     String depTime;
 
-    public String getGrade() {
-        return grade;
-    }
+    public String getGrade() { return grade; }
 
     public void setGrade(String grade) {
         this.grade = grade;
