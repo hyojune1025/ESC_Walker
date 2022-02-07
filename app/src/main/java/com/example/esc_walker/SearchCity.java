@@ -30,16 +30,13 @@ public class SearchCity extends AppCompatActivity {
     private ImageButton ibt_bus;
     private ImageButton ibt_train;
     private ImageButton ibt_airplane;
-    private ImageView iv_no_result_bus;
-    private ImageView iv_no_result_train;
-    private ImageView iv_no_result_airplane;
+    private ImageView iv_no_result;
     ArrayAdapter<CharSequence> adsp_start_city, adsp_arrive_city, adsp_start_tm, adsp_arrive_tm; //spinner 정보 출력할 adapter
 
     //test for api TODO
     ArrayList<Bus> list_bus = null;
     ArrayList<Train> list_train = null;
     ArrayList<Plane> list_plain = null;
-    //RecyclerView recyclerView;
 
     //api 불러올 때 사용해야 하는 정보
     String start_tm;
@@ -86,7 +83,7 @@ public class SearchCity extends AppCompatActivity {
         ibt_train = findViewById(R.id.ibt_train);
         ibt_airplane = findViewById(R.id.ibt_airplane);
 
-        iv_no_result_bus = findViewById(R.id.iv_no_result_bus);
+        iv_no_result = findViewById(R.id.iv_no_result);
 
         search_btn_lookup = (Button)findViewById(R.id.serach_btn_lookup);
 
@@ -94,6 +91,7 @@ public class SearchCity extends AppCompatActivity {
         ibt_bus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                iv_no_result.setImageResource(R.drawable.walk1);
                 ibt_bus.setImageResource(R.drawable.bus);
                 ibt_train.setImageResource(R.drawable.train_icon);
                 ibt_airplane.setImageResource(R.drawable.airplane_icon);
@@ -183,24 +181,22 @@ public class SearchCity extends AppCompatActivity {
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
-                                list_bus = null;
                                 start_id = GetBusInfo.getBusId(start_tm);
                                 arrive_id = GetBusInfo.getBusId(arrive_tm);
                                 list_bus = GetBusInfo.getBusData(start_id, arrive_id, start_date);
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        if (!list_bus.isEmpty()) {
-                                            MyAdapter_bus adapter = new MyAdapter_bus(getApplicationContext(), list_bus);
-                                            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rcv_result);
-                                            recyclerView.setHasFixedSize(true);
-                                            LinearLayoutManager layoutManager = new LinearLayoutManager(SearchCity.this);
-                                            layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                                            recyclerView.setLayoutManager(layoutManager);
-                                            recyclerView.setAdapter(adapter);
-                                        } else {
-                                            iv_no_result_bus.setImageResource(R.drawable.walk2);
-                                        }
+                                        MyAdapter_bus adapter = new MyAdapter_bus(getApplicationContext(), list_bus);
+                                        RecyclerViewEmptySupport recyclerView = (RecyclerViewEmptySupport) findViewById(R.id.rcv_result);
+                                        recyclerView.setHasFixedSize(true);
+                                        LinearLayoutManager layoutManager = new LinearLayoutManager(SearchCity.this);
+                                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                                        recyclerView.setLayoutManager(layoutManager);
+                                        recyclerView.setAdapter(adapter);
+
+                                        if(list_bus.isEmpty()) iv_no_result.setImageResource(R.drawable.walk2);
+                                        recyclerView.setEmptyView(iv_no_result);
                                     }
                                 });
                             }
@@ -214,6 +210,7 @@ public class SearchCity extends AppCompatActivity {
             int cityCode_dep,cityCode_arr;
             @Override
             public void onClick(View v) {
+                iv_no_result.setImageResource(R.drawable.walk1);
                 ibt_bus.setImageResource(R.drawable.bus_icon);
                 ibt_train.setImageResource(R.drawable.train);
                 ibt_airplane.setImageResource(R.drawable.airplane_icon);
@@ -324,18 +321,22 @@ public class SearchCity extends AppCompatActivity {
                                     @Override
                                     public void run() {
                                         MyAdapter_train adapter = new MyAdapter_train(getApplicationContext(),list_train);
-                                        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.rcv_result);
+                                        RecyclerViewEmptySupport recyclerView = (RecyclerViewEmptySupport) findViewById(R.id.rcv_result);
                                         recyclerView.setHasFixedSize(true);
                                         LinearLayoutManager layoutManager = new LinearLayoutManager(SearchCity.this);
                                         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                                         recyclerView.setLayoutManager(layoutManager);
                                         recyclerView.setAdapter(adapter);
+
+                                        if(list_train.isEmpty()) iv_no_result.setImageResource(R.drawable.walk2);
+                                        recyclerView.setEmptyView(iv_no_result);
                                     }
                                 });
                             }
                         }).start();
 
                     }
+
                 });
             }
         });
@@ -344,6 +345,7 @@ public class SearchCity extends AppCompatActivity {
         ibt_airplane.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                iv_no_result.setImageResource(R.drawable.walk1);
                 ibt_bus.setImageResource(R.drawable.bus_icon);
                 ibt_train.setImageResource(R.drawable.train_icon);
                 ibt_airplane.setImageResource(R.drawable.airplane);
@@ -460,17 +462,19 @@ public class SearchCity extends AppCompatActivity {
                                 start_id = GetPlaneInfo.getPlaneId(start_tm);
                                 arrive_id = GetPlaneInfo.getPlaneId(arrive_tm);
                                 list_plain = GetPlaneInfo.getPlaneData(start_id,arrive_id,start_date);
-                                //list_plain = GetPlaneInfo.getPlaneData("NAARKJJ","NAARKPC","20201201");
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
                                         MyAdapter_plane adapter = new MyAdapter_plane(getApplicationContext(),list_plain);
-                                        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.rcv_result);
+                                        RecyclerViewEmptySupport recyclerView = (RecyclerViewEmptySupport)findViewById(R.id.rcv_result);
                                         recyclerView.setHasFixedSize(true);
                                         LinearLayoutManager layoutManager = new LinearLayoutManager(SearchCity.this);
                                         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                                         recyclerView.setLayoutManager(layoutManager);
                                         recyclerView.setAdapter(adapter);
+
+                                        if(list_plain.isEmpty()) iv_no_result.setImageResource(R.drawable.walk2);
+                                        recyclerView.setEmptyView(iv_no_result);
                                     }
                                 });
                             }
