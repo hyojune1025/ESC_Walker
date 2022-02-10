@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -31,9 +33,9 @@ public class SearchCity extends AppCompatActivity {
     private ImageButton ibt_train;
     private ImageButton ibt_airplane;
     private ImageView iv_no_result;
-    ArrayAdapter<CharSequence> adsp_start_city, adsp_arrive_city, adsp_start_tm, adsp_arrive_tm; //spinner 정보 출력할 adapter
+    ArrayAdapter<CharSequence> adsp_start_city, adsp_arrive_city, adsp_start_tm, adsp_arrive_tm; // spinner 정보 출력할 adapter
 
-    //test for api TODO
+    //api 정보 받아 올 arrayList
     ArrayList<Bus> list_bus = null;
     ArrayList<Train> list_train = null;
     ArrayList<Plane> list_plain = null;
@@ -44,8 +46,11 @@ public class SearchCity extends AppCompatActivity {
     String start_id;
     String arrive_id;
     String start_date;
-    
-    private ImageButton search_ibtn_back;
+
+    LinearLayout layout7;
+    TextView result1,result2,result3,result4;
+
+    private ImageButton search_ibtn_back; // 뒤로가기 버튼
 
     //달력(날짜) 선택
     Calendar calendar = Calendar.getInstance();
@@ -73,7 +78,6 @@ public class SearchCity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-
         final Spinner sp_start_city = (Spinner)findViewById(R.id.sp_start_city);
         final Spinner sp_arrive_city = (Spinner)findViewById(R.id.sp_arrive_city);
         final Spinner sp_start_tm = (Spinner)findViewById(R.id.sp_start_terminal);
@@ -87,18 +91,31 @@ public class SearchCity extends AppCompatActivity {
 
         search_btn_lookup = (Button)findViewById(R.id.serach_btn_lookup);
 
+        layout7 = (LinearLayout)findViewById(R.id.linearLayout7);
+        result1 = findViewById(R.id.tv_result1);
+        result2 = findViewById(R.id.tv_result2);
+        result3 = findViewById(R.id.tv_result3);
+        result4 = findViewById(R.id.tv_result4);
+        layout7.setVisibility(View.GONE);
+
         //버스 입력모드
         ibt_bus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iv_no_result.setImageResource(R.drawable.walk1);
+                //조회 결과 레이아웃 숨기기
+                layout7.setVisibility(View.GONE);
+                // 결과창 이미지 초기화
+                iv_no_result.setImageResource(R.drawable.walk1); 
+                // 버스 선택, 나머지 초기화
                 ibt_bus.setImageResource(R.drawable.bus);
                 ibt_train.setImageResource(R.drawable.train_icon);
                 ibt_airplane.setImageResource(R.drawable.airplane_icon);
+                //첫번째 spinner(출발지) 선택
                 adsp_start_city = ArrayAdapter.createFromResource(SearchCity.this,R.array.spinner_city_start, android.R.layout.simple_spinner_dropdown_item);
                 adsp_start_city.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 sp_start_city.setAdapter(adsp_start_city);
-                sp_start_city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                //첫 spinner 내용에 따라 두번째 spinner 선택 list 변경
+                sp_start_city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {  
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         if(adsp_start_city.getItem(position).equals("서울")){
@@ -123,7 +140,7 @@ public class SearchCity extends AppCompatActivity {
                         sp_start_tm.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                start_tm = adsp_start_tm.getItem(position).toString();
+                                start_tm = adsp_start_tm.getItem(position).toString(); // start_tm에 출발지(정류장) 저장
                             }
                             @Override
                             public void onNothingSelected(AdapterView<?> parent) {
@@ -175,9 +192,9 @@ public class SearchCity extends AppCompatActivity {
                     }
                 });
                 search_btn_lookup.setOnClickListener(new View.OnClickListener() {
-                    //TODO recycler view 와 연동
                     @Override
                     public void onClick(View v) {
+                        result1.setText("등급");
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
@@ -195,7 +212,11 @@ public class SearchCity extends AppCompatActivity {
                                         recyclerView.setLayoutManager(layoutManager);
                                         recyclerView.setAdapter(adapter);
 
-                                        if(list_bus.isEmpty()) iv_no_result.setImageResource(R.drawable.walk2);
+                                        if(list_bus.isEmpty()){
+                                            iv_no_result.setImageResource(R.drawable.walk2); // TODO 결과 없을 때 이미지 새로
+                                            layout7.setVisibility(View.GONE);
+                                        }
+                                        else layout7.setVisibility(View.VISIBLE);
                                         recyclerView.setEmptyView(iv_no_result);
                                     }
                                 });
@@ -205,11 +226,14 @@ public class SearchCity extends AppCompatActivity {
                 });
             }
         });
+        
         //기차 입력모드
         ibt_train.setOnClickListener(new View.OnClickListener() {
             int cityCode_dep,cityCode_arr;
             @Override
             public void onClick(View v) {
+                //조회 결과 레이아웃 숨기기
+                layout7.setVisibility(View.GONE);
                 iv_no_result.setImageResource(R.drawable.walk1);
                 ibt_bus.setImageResource(R.drawable.bus_icon);
                 ibt_train.setImageResource(R.drawable.train);
@@ -308,9 +332,9 @@ public class SearchCity extends AppCompatActivity {
                     }
                 });
                 search_btn_lookup.setOnClickListener(new View.OnClickListener() {
-                    //TODO recycler view 와 연동
                     @Override
                     public void onClick(View v) {
+                        result1.setText("열차명");
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
@@ -328,7 +352,11 @@ public class SearchCity extends AppCompatActivity {
                                         recyclerView.setLayoutManager(layoutManager);
                                         recyclerView.setAdapter(adapter);
 
-                                        if(list_train.isEmpty()) iv_no_result.setImageResource(R.drawable.walk2);
+                                        if(list_train.isEmpty()){
+                                            iv_no_result.setImageResource(R.drawable.walk2); // TODO 결과 없을 때 이미지 새로
+                                            layout7.setVisibility(View.GONE);
+                                        }
+                                        else layout7.setVisibility(View.VISIBLE);
                                         recyclerView.setEmptyView(iv_no_result);
                                     }
                                 });
@@ -345,6 +373,8 @@ public class SearchCity extends AppCompatActivity {
         ibt_airplane.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //조회 결과 레이아웃 숨기기
+                layout7.setVisibility(View.GONE);
                 iv_no_result.setImageResource(R.drawable.walk1);
                 ibt_bus.setImageResource(R.drawable.bus_icon);
                 ibt_train.setImageResource(R.drawable.train_icon);
@@ -453,9 +483,9 @@ public class SearchCity extends AppCompatActivity {
                     }
                 });
                 search_btn_lookup.setOnClickListener(new View.OnClickListener() {
-                    //TODO recycler view 와 연동
                     @Override
                     public void onClick(View v) {
+                        result1.setText("항공사");
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
@@ -473,13 +503,16 @@ public class SearchCity extends AppCompatActivity {
                                         recyclerView.setLayoutManager(layoutManager);
                                         recyclerView.setAdapter(adapter);
 
-                                        if(list_plain.isEmpty()) iv_no_result.setImageResource(R.drawable.walk2);
+                                        if(list_plain.isEmpty()){
+                                            iv_no_result.setImageResource(R.drawable.walk2); //TODO 결과 없을 때 띄울 이미지 새로
+                                            layout7.setVisibility(View.GONE);
+                                        }
+                                        else layout7.setVisibility(View.VISIBLE)x;
                                         recyclerView.setEmptyView(iv_no_result);
                                     }
                                 });
                             }
                         }).start();
-
                     }
                 });
             }
@@ -507,6 +540,4 @@ public class SearchCity extends AppCompatActivity {
             }
         });
     }
-
-
 }

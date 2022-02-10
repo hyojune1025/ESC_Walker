@@ -1,6 +1,7 @@
 package com.example.esc_walker;
 
 public class Plane {
+
     String airline;
     String arrTime;
     String charge;
