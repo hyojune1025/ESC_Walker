@@ -48,7 +48,7 @@ public class SearchCity extends AppCompatActivity {
     String start_date;
 
     LinearLayout layout7;
-    TextView result1,result2,result3,result4;
+    TextView result1,result2,result3,result4, tvChange;
 
     private ImageButton search_ibtn_back; // 뒤로가기 버튼
 
@@ -96,6 +96,7 @@ public class SearchCity extends AppCompatActivity {
         result2 = findViewById(R.id.tv_result2);
         result3 = findViewById(R.id.tv_result3);
         result4 = findViewById(R.id.tv_result4);
+        tvChange = findViewById(R.id.textView5);
         layout7.setVisibility(View.GONE);
 
         //버스 입력모드
@@ -214,6 +215,7 @@ public class SearchCity extends AppCompatActivity {
 
                                         if(list_bus.isEmpty()){
                                             iv_no_result.setImageResource(R.drawable.walk2); // TODO 결과 없을 때 이미지 새로
+                                            tvChange.setText("검색 결과를 찾지 못했어요..");
                                             layout7.setVisibility(View.GONE);
                                         }
                                         else layout7.setVisibility(View.VISIBLE);
@@ -354,6 +356,7 @@ public class SearchCity extends AppCompatActivity {
 
                                         if(list_train.isEmpty()){
                                             iv_no_result.setImageResource(R.drawable.walk2); // TODO 결과 없을 때 이미지 새로
+                                            tvChange.setText("검색 결과를 찾지 못했어요..");
                                             layout7.setVisibility(View.GONE);
                                         }
                                         else layout7.setVisibility(View.VISIBLE);
@@ -505,9 +508,10 @@ public class SearchCity extends AppCompatActivity {
 
                                         if(list_plain.isEmpty()){
                                             iv_no_result.setImageResource(R.drawable.walk2); //TODO 결과 없을 때 띄울 이미지 새로
+                                            tvChange.setText("검색 결과를 찾지 못했어요..");
                                             layout7.setVisibility(View.GONE);
                                         }
-                                        else layout7.setVisibility(View.VISIBLE)x;
+                                        else layout7.setVisibility(View.VISIBLE);
                                         recyclerView.setEmptyView(iv_no_result);
                                     }
                                 });

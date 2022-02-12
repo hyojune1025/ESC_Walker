@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class RecyclerViewEmptySupport extends RecyclerView { // recyclerView 결과 없을 때 이벤트 처리를 위한 class
+public class goRecyclerViewEmptySupport extends RecyclerView { // recyclerView 결과 없을 때 이벤트 처리를 위한 class
     private View emptyView;
 
     private AdapterDataObserver emptyObserver = new AdapterDataObserver() {
