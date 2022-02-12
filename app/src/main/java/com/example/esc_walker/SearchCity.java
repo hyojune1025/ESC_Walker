@@ -97,6 +97,7 @@ public class SearchCity extends AppCompatActivity {
         result3 = findViewById(R.id.tv_result3);
         result4 = findViewById(R.id.tv_result4);
         layout7.setVisibility(View.GONE);
+        TextView tvchange = findViewById(R.id.textView5);
 
         //버스 입력모드
         ibt_bus.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +106,8 @@ public class SearchCity extends AppCompatActivity {
                 //조회 결과 레이아웃 숨기기
                 layout7.setVisibility(View.GONE);
                 // 결과창 이미지 초기화
-                iv_no_result.setImageResource(R.drawable.walk1); 
+                iv_no_result.setImageResource(R.drawable.walk1);
+                tvchange.setText("교통편을 조회하세요!");
                 // 버스 선택, 나머지 초기화
                 ibt_bus.setImageResource(R.drawable.bus);
                 ibt_train.setImageResource(R.drawable.train_icon);
@@ -214,6 +216,8 @@ public class SearchCity extends AppCompatActivity {
 
                                         if(list_bus.isEmpty()){
                                             iv_no_result.setImageResource(R.drawable.walk2); // TODO 결과 없을 때 이미지 새로
+                                            TextView tvchange = findViewById(R.id.textView5);
+                                            tvchange.setText("검색 결과를 찾지 못했어요..");
                                             layout7.setVisibility(View.GONE);
                                         }
                                         else layout7.setVisibility(View.VISIBLE);
@@ -235,6 +239,7 @@ public class SearchCity extends AppCompatActivity {
                 //조회 결과 레이아웃 숨기기
                 layout7.setVisibility(View.GONE);
                 iv_no_result.setImageResource(R.drawable.walk1);
+                tvchange.setText("교통편을 조회하세요!");
                 ibt_bus.setImageResource(R.drawable.bus_icon);
                 ibt_train.setImageResource(R.drawable.train);
                 ibt_airplane.setImageResource(R.drawable.airplane_icon);
@@ -354,6 +359,8 @@ public class SearchCity extends AppCompatActivity {
 
                                         if(list_train.isEmpty()){
                                             iv_no_result.setImageResource(R.drawable.walk2); // TODO 결과 없을 때 이미지 새로
+                                            TextView tvchange = findViewById(R.id.textView5);
+                                            tvchange.setText("검색 결과를 찾지 못했어요..");
                                             layout7.setVisibility(View.GONE);
                                         }
                                         else layout7.setVisibility(View.VISIBLE);
@@ -376,6 +383,7 @@ public class SearchCity extends AppCompatActivity {
                 //조회 결과 레이아웃 숨기기
                 layout7.setVisibility(View.GONE);
                 iv_no_result.setImageResource(R.drawable.walk1);
+                tvchange.setText("교통편을 조회하세요!");
                 ibt_bus.setImageResource(R.drawable.bus_icon);
                 ibt_train.setImageResource(R.drawable.train_icon);
                 ibt_airplane.setImageResource(R.drawable.airplane);
@@ -505,9 +513,11 @@ public class SearchCity extends AppCompatActivity {
 
                                         if(list_plain.isEmpty()){
                                             iv_no_result.setImageResource(R.drawable.walk2); //TODO 결과 없을 때 띄울 이미지 새로
+                                            TextView tvchange = findViewById(R.id.textView5);
+                                            tvchange.setText("검색 결과를 찾지 못했어요..");
                                             layout7.setVisibility(View.GONE);
                                         }
-                                        else layout7.setVisibility(View.VISIBLE)x;
+                                        else layout7.setVisibility(View.VISIBLE);
                                         recyclerView.setEmptyView(iv_no_result);
                                     }
                                 });
