@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,7 +29,7 @@ import java.util.Locale;
 public class SearchCity extends AppCompatActivity {
 
     ImageButton ibt_date;
-    private Button search_btn_lookup;
+    private Button search_btn_lookup, search_btn_web;
     private ImageButton ibt_bus;
     private ImageButton ibt_train;
     private ImageButton ibt_airplane;
@@ -89,15 +90,17 @@ public class SearchCity extends AppCompatActivity {
 
         iv_no_result = findViewById(R.id.iv_no_result);
 
-        search_btn_lookup = (Button)findViewById(R.id.serach_btn_lookup);
+        search_btn_lookup = (Button)findViewById(R.id.search_btn_lookup);
+        search_btn_web = (Button)findViewById(R.id.search_btn_web);
 
         layout7 = (LinearLayout)findViewById(R.id.linearLayout7);
         result1 = findViewById(R.id.tv_result1);
         result2 = findViewById(R.id.tv_result2);
         result3 = findViewById(R.id.tv_result3);
         result4 = findViewById(R.id.tv_result4);
-        tvChange = findViewById(R.id.textView5);
         layout7.setVisibility(View.GONE);
+
+        RecyclerViewEmptySupport recyclerView = (RecyclerViewEmptySupport) findViewById(R.id.rcv_result);
 
         //버스 입력모드
         ibt_bus.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +109,9 @@ public class SearchCity extends AppCompatActivity {
                 //조회 결과 레이아웃 숨기기
                 layout7.setVisibility(View.GONE);
                 // 결과창 이미지 초기화
-                iv_no_result.setImageResource(R.drawable.walk1); 
+                recyclerView.setAdapter(null);
+                iv_no_result.setVisibility(View.VISIBLE);
+                iv_no_result.setImageResource(R.drawable.walk3);
                 // 버스 선택, 나머지 초기화
                 ibt_bus.setImageResource(R.drawable.bus);
                 ibt_train.setImageResource(R.drawable.train_icon);
@@ -206,7 +211,6 @@ public class SearchCity extends AppCompatActivity {
                                     @Override
                                     public void run() {
                                         MyAdapter_bus adapter = new MyAdapter_bus(getApplicationContext(), list_bus);
-                                        RecyclerViewEmptySupport recyclerView = (RecyclerViewEmptySupport) findViewById(R.id.rcv_result);
                                         recyclerView.setHasFixedSize(true);
                                         LinearLayoutManager layoutManager = new LinearLayoutManager(SearchCity.this);
                                         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -214,16 +218,26 @@ public class SearchCity extends AppCompatActivity {
                                         recyclerView.setAdapter(adapter);
 
                                         if(list_bus.isEmpty()){
-                                            iv_no_result.setImageResource(R.drawable.walk2); // TODO 결과 없을 때 이미지 새로
-                                            tvChange.setText("검색 결과를 찾지 못했어요..");
+                                            iv_no_result.setImageResource(R.drawable.walk4);
                                             layout7.setVisibility(View.GONE);
                                         }
-                                        else layout7.setVisibility(View.VISIBLE);
+                                        else{
+                                            layout7.setVisibility(View.VISIBLE);
+                                            iv_no_result.setVisibility(View.GONE);
+                                        }
                                         recyclerView.setEmptyView(iv_no_result);
                                     }
                                 });
                             }
                         }).start();
+                    }
+                });
+
+                search_btn_web.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent Url = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.bustago.or.kr/newweb/kr/index.do"));
+                        startActivity(Url);
                     }
                 });
             }
@@ -236,7 +250,9 @@ public class SearchCity extends AppCompatActivity {
             public void onClick(View v) {
                 //조회 결과 레이아웃 숨기기
                 layout7.setVisibility(View.GONE);
-                iv_no_result.setImageResource(R.drawable.walk1);
+                recyclerView.setAdapter(null);
+                iv_no_result.setVisibility(View.VISIBLE);
+                iv_no_result.setImageResource(R.drawable.walk3);
                 ibt_bus.setImageResource(R.drawable.bus_icon);
                 ibt_train.setImageResource(R.drawable.train);
                 ibt_airplane.setImageResource(R.drawable.airplane_icon);
@@ -355,11 +371,13 @@ public class SearchCity extends AppCompatActivity {
                                         recyclerView.setAdapter(adapter);
 
                                         if(list_train.isEmpty()){
-                                            iv_no_result.setImageResource(R.drawable.walk2); // TODO 결과 없을 때 이미지 새로
-                                            tvChange.setText("검색 결과를 찾지 못했어요..");
+                                            iv_no_result.setImageResource(R.drawable.walk4);
                                             layout7.setVisibility(View.GONE);
                                         }
-                                        else layout7.setVisibility(View.VISIBLE);
+                                        else{
+                                            layout7.setVisibility(View.VISIBLE);
+                                            iv_no_result.setVisibility(View.GONE);
+                                        }
                                         recyclerView.setEmptyView(iv_no_result);
                                     }
                                 });
@@ -368,6 +386,13 @@ public class SearchCity extends AppCompatActivity {
 
                     }
 
+                });
+                search_btn_web.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent Url = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.letskorail.com/ebizprd/EbizPrdTicketpr21100W_pr21110.do"));
+                        startActivity(Url);
+                    }
                 });
             }
         });
@@ -378,7 +403,9 @@ public class SearchCity extends AppCompatActivity {
             public void onClick(View v) {
                 //조회 결과 레이아웃 숨기기
                 layout7.setVisibility(View.GONE);
-                iv_no_result.setImageResource(R.drawable.walk1);
+                recyclerView.setAdapter(null);
+                iv_no_result.setVisibility(View.VISIBLE);
+                iv_no_result.setImageResource(R.drawable.walk3);
                 ibt_bus.setImageResource(R.drawable.bus_icon);
                 ibt_train.setImageResource(R.drawable.train_icon);
                 ibt_airplane.setImageResource(R.drawable.airplane);
@@ -507,11 +534,13 @@ public class SearchCity extends AppCompatActivity {
                                         recyclerView.setAdapter(adapter);
 
                                         if(list_plain.isEmpty()){
-                                            iv_no_result.setImageResource(R.drawable.walk2); //TODO 결과 없을 때 띄울 이미지 새로
-                                            tvChange.setText("검색 결과를 찾지 못했어요..");
+                                            iv_no_result.setImageResource(R.drawable.walk4); //TODO 결과 없을 때 띄울 이미지 새로
                                             layout7.setVisibility(View.GONE);
                                         }
-                                        else layout7.setVisibility(View.VISIBLE);
+                                        else{
+                                            layout7.setVisibility(View.VISIBLE);
+                                            iv_no_result.setVisibility(View.GONE);
+                                        }
                                         recyclerView.setEmptyView(iv_no_result);
                                     }
                                 });
@@ -519,11 +548,18 @@ public class SearchCity extends AppCompatActivity {
                         }).start();
                     }
                 });
+
+                search_btn_web.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent Url = new Intent(Intent.ACTION_VIEW, Uri.parse("https://m-flight.naver.com/"));
+                        startActivity(Url);
+                    }
+                });
             }
         });
 
         search_ibtn_back = findViewById(R.id.search_ibtn_back);
-        search_btn_lookup = findViewById(R.id.serach_btn_lookup);
         ibt_date = findViewById(R.id.ibt_calendar);
 
         //날짜 입력
